@@ -9,7 +9,7 @@ const app = express()
 app.use(bodyParser.json());
 app.use(cors())
 
-const posts = {};
+let posts = { };
 
 
 app.post('/events',(req,res)=>{
@@ -22,11 +22,11 @@ app.post('/events',(req,res)=>{
     if (type === 'CommentCreated'){
       const {id, content, postId} = data;
       
-      const post = post[postId];
+      const post = posts[postId];
       post.comments.push({id, content});
 
     }
-
+    console.log(posts) 
     res.send({});
 })
 
